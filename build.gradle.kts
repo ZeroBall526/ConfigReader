@@ -1,5 +1,5 @@
 group = "dev.staeming"
-version = "1.0.0"
+version = "1.0.0b"
 
 plugins{
     kotlin("jvm") version "2.2.0"
@@ -25,21 +25,24 @@ dependencies{
     testImplementation(kotlin("test"))
 }
 
-publishing {
-    publications {
-        create<MavenPublication>("maven") {
-            artifact(tasks.getByName("shadowJar"))
-            artifact(tasks.getByName("sourcesJar"))
-            artifact(tasks.getByName("javadocJar"))
-
-            groupId = "dev.staeming"
-            artifactId = "ConfigReader"
-            version = "1.0.0"
-        }
-    }
+tasks.named<Jar>("jar"){
+    enabled = false
 }
 
 tasks.shadowJar{
     archiveClassifier.set("")
     relocate("tools.jackson", "dev.staeming.configreader.internal.jackson")
+}
+
+publishing {
+    publications {
+        create<MavenPublication>("maven") {
+            from(components["java"])
+            artifact(tasks.shadowJar)
+
+            groupId = "dev.staeming"
+            artifactId = "ConfigReader"
+            version = version
+        }
+    }
 }
