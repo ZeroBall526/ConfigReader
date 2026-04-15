@@ -37,12 +37,20 @@ tasks.shadowJar{
 publishing {
     publications {
         create<MavenPublication>("maven") {
-            from(components["java"])
             artifact(tasks.shadowJar)
+
+            artifact(tasks.named("sourcesJar"))
+            artifact(tasks.named("javadocJar"))
 
             groupId = "dev.staeming"
             artifactId = "ConfigReader"
             version = version
+
+            pom {
+                withXml {
+                    asNode().appendNode("dependencies")
+                }
+            }
         }
     }
 
