@@ -1,0 +1,17 @@
+ConfigReader
+Copyright 2026 ZeroBall
+
+This product includes software developed by the following projects:
+
+* FasterXML Jackson (https://github.com/FasterXML/jackson)
+  - jackson-module-kotlin
+  - jackson-dataformat-yaml
+  - jackson-dataformat-properties
+  License: Apache License 2.0
+
+* Apache Commons IO (https://commons.apache.org/proper/commons-io/)
+  License: Apache License 2.0
+
+* Kotlin Standard Library (https://kotlinlang.org/)
+  Copyright 2010-2026 JetBrains s.r.o and Kotlin Programming Language contributors.
+  License: Apache License 2.0
