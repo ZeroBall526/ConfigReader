@@ -45,4 +45,32 @@ publishing {
             version = version
         }
     }
+
+    val repoUsername = (project.findProperty("JFROG_USER") as String?)
+        ?: System.getenv("JFROG_USER")
+
+    val repoPassword = (project.findProperty("JFROG_PASSWORD") as String?)
+        ?: System.getenv("JFROG_PASSWORD")
+
+    if(repoUsername != null && repoPassword != null){
+        repositories {
+            maven {
+                val releasesRepoUrl = uri(System.getenv("release_local_url") ?: error("JFROG_RELEASE_URL not set"))
+                val snapshotsRepoUrl = uri(System.getenv("dev_local_url")  ?: error("JFROG_DEV_URL not set"))
+
+                url = if (version.toString().endsWith("SNAPSHOT")) {
+                    snapshotsRepoUrl
+                } else {
+                    releasesRepoUrl
+                }
+
+                isAllowInsecureProtocol = true
+
+                credentials {
+                    username = repoUsername
+                    password = repoPassword
+                }
+            }
+        }
+    }
 }
