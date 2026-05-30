@@ -1,5 +1,5 @@
 group = "dev.staeming"
-version = "1.0.0b"
+version = "1.1.0"
 
 plugins{
     kotlin("jvm") version "2.2.0"
