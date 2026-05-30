@@ -1,6 +1,7 @@
 package dev.staeming.configreader
 
 import dev.staeming.configreader.internal.ConfigLoader
+import dev.staeming.configreader.internal.EnvironmentLoader
 
 /**
  * Provides access to ConfigReader Instance
@@ -33,5 +34,9 @@ object ConfigManager {
      */
     fun <T : ConfigValues>getConfig(path: String, values: Class<T>) : ConfigReader {
         return ConfigLoader(path,values,1)
+    }
+
+    fun getEnv(path: String) : EnvironmentReader {
+        return EnvironmentLoader(path)
     }
 }

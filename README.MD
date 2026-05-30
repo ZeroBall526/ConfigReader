@@ -11,6 +11,7 @@ A lightweight, robust configuration management library for Kotlin and Java.
 * `yml`
 * `yaml`
 * `properties`
+* `.env (read-only)`
 
 ... and we plan to provide more config format!
 
